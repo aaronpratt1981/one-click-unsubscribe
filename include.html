@@ -1,7 +1,8 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div class="d-flex p-2 justify-content-center align-items-center">
     <img src="https://cdn.phenompeople.com/CareerConnectResources/CHENUS/social/1024x512-ChenMed-1581936269689.jpg" alt="ChenMed logo" class="mx-auto" style="max-width: 400px;height: auto;" />
-%%[
+<br />
+    %%[
 
 var @debug
 var @jid
@@ -119,13 +120,13 @@ endif
 ]%%
 <!-- output your "You've been unsubscribed" HTML content here -->
 
-%%[ IF @Status == 'Event posted' THEN ]%%
+%%[ IF @Status == "Event posted" THEN ]%%
 You have been unsubscribed.<br /><br />
 %%[ SET @resublink = REDIRECTTO(CLOUDPAGESURL(412,"emailaddr",@email,"_subscriberkey",@skey,"listid",@listid)) ]%%
 <a href="%%=v(@resublink)=%%">Resubscribe</a>
 %%[ ELSE ]%%
 An error occurred.<br />
-Status: %%=v(@Status)<br />
+Status: %%=v(@Status)=%%<br />
 Error Number: %%=v(@Error)=%%
 %%[ ENDIF ]%%
 </div>
