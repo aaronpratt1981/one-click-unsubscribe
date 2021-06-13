@@ -18,21 +18,6 @@ set @skey = AttributeValue("_subscriberkey")
 set @reason = "One-Click Unsubscribe"
 set @unsubscribeAll = RequestParameter("ua")
 
-if @debug == 1 then
-  output(concat("<br>jid: ", @jid))
-  output(concat("<br>listid: ", @listid))
-  output(concat("<br>batchid: ", @batchid))
-  output(concat("<br>email: ", @email))
-  output(concat("<br>skey: ", @skey))
-  output(concat("<br>reason: ", @reason))
-  output(concat("<br>unsubscribeAll: ", @unsubscribeAll))
-  output(concat("<br>overallStatus: ", @overallStatus))
-  output(concat("<br>requestId: ", @requestId))
-  output(concat("<br>Response: ", @Response))
-  output(concat("<br>Status: ", @Status))
-  output(concat("<br>Error: ", @Error))
-endif
-
 /* if we know the subscriber */
 if not empty(@skey) then
 
@@ -112,7 +97,20 @@ if not empty(@skey) then
 
 endif
 
-
+if @debug == 1 then
+  output(concat("<br>jid: ", @jid))
+  output(concat("<br>listid: ", @listid))
+  output(concat("<br>batchid: ", @batchid))
+  output(concat("<br>email: ", @email))
+  output(concat("<br>skey: ", @skey))
+  output(concat("<br>reason: ", @reason))
+  output(concat("<br>unsubscribeAll: ", @unsubscribeAll))
+  output(concat("<br>overallStatus: ", @overallStatus))
+  output(concat("<br>requestId: ", @requestId))
+  output(concat("<br>Response: ", @Response))
+  output(concat("<br>Status: ", @Status))
+  output(concat("<br>Error: ", @Error))
+endif
 
 ]%%
-<!-- output your "You've been unsubscribed" HTML content here; debug reordered -->
+<!-- output your "You've been unsubscribed" HTML content here -->
