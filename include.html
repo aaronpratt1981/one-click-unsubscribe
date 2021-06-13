@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div class="d-flex p-2 justify-content-center align-items-center">
-
+    <img src="https://cdn.phenompeople.com/CareerConnectResources/CHENUS/social/1024x512-ChenMed-1581936269689.jpg" alt="ChenMed logo" class="mx-auto" style="max-width: 400px;height: auto;" />
 %%[
 
 var @debug
@@ -13,7 +13,7 @@ var @reason
 var @unsubscribeAll
 var @qs
 
-set @debug = 1
+set @debug = 0
 set @jid = AttributeValue("jobid")
 set @listid = AttributeValue("listid")
 set @batchid = AttributeValue("_JobSubscriberBatchID")
@@ -118,8 +118,15 @@ endif
 
 ]%%
 <!-- output your "You've been unsubscribed" HTML content here -->
+
+%%[ IF @Status == 'Event posted' THEN ]%%
+You have been unsubscribed.<br /><br />
 %%[ SET @resublink = REDIRECTTO(CLOUDPAGESURL(412,"emailaddr",@email,"_subscriberkey",@skey,"listid",@listid)) ]%%
 <a href="%%=v(@resublink)=%%">Resubscribe</a>
+%%[ ELSE ]%%
+An error occurred.<br />
+Status: %%=v(@Status)<br />
+Error Number: %%=v(@Error)=%%
 </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

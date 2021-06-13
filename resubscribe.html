@@ -1,5 +1,7 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 <div class="d-flex p-2 justify-content-center align-items-center">
+    <img src="https://cdn.phenompeople.com/CareerConnectResources/CHENUS/social/1024x512-ChenMed-1581936269689.jpg" alt="ChenMed logo" class="mx-auto" style="max-width: 400px;height: auto;" />
+
 %%[ 
 var @debug
 var @jid
@@ -10,7 +12,7 @@ var @skey
 var @reason
 var @unsubscribeAll
 
-set @debug = 1
+set @debug = 0
 set @jid = AttributeValue("jobid")
 set @listid = AttributeValue("listid")
 set @batchid = AttributeValue("_JobSubscriberBatchID")
@@ -35,6 +37,9 @@ SET @ll_statusCode = InvokeUpdate(@ll_sub, @ll_statusMsg, @errorCode)
 
 IF @ll_statusCode != "OK" THEN
     RaiseError(@ll_statusMsg, 0, @ll_statusCode, @errorCode)
+ELSE ]%%
+You have been resubscribed.
+%%[
 ENDIF
 
 if @debug == 1 then
