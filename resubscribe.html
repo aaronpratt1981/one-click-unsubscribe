@@ -1,0 +1,52 @@
+%%[ 
+var @debug
+var @jid
+var @listid
+var @batchid
+var @email
+var @skey
+var @reason
+var @unsubscribeAll
+
+set @debug = 1
+set @jid = AttributeValue("jobid")
+set @listid = AttributeValue("listid")
+set @batchid = AttributeValue("_JobSubscriberBatchID")
+set @email = AttributeValue("emailaddr")
+set @skey = AttributeValue("_subscriberkey")
+set @unsubscribeAll = RequestParameter("ua")
+
+SET @ll_sub = CreateObject("Subscriber")
+SetObjectProperty(@ll_sub, "EmailAddress", @email)
+SetObjectProperty(@ll_sub, "SubscriberKey", @skey)
+
+
+set @subscription = CreateObject("SubscriberList")
+//process_listid from your original email
+SetObjectProperty( @subscription, "ID",@listid)
+SetObjectProperty( @subscription, "IDSpecified", "true" )
+SetObjectProperty( @subscription, "Status", "Active" )
+SetObjectProperty( @subscription, "StatusSpecified", "true" )
+AddObjectArrayItem( @ll_sub, "Lists", @subscription )
+
+SET @ll_statusCode = InvokeUpdate(@ll_sub, @ll_statusMsg, @errorCode)
+
+IF @ll_statusCode != "OK" THEN
+    RaiseError(@ll_statusMsg, 0, @ll_statusCode, @errorCode)
+ENDIF
+
+if @debug == 1 then
+  output(concat("<br>jid: ", @jid))
+  output(concat("<br>listid: ", @listid))
+  output(concat("<br>batchid: ", @batchid))
+  output(concat("<br>email: ", @email))
+  output(concat("<br>skey: ", @skey))
+  output(concat("<br>reason: ", @reason))
+  output(concat("<br>unsubscribeAll: ", @unsubscribeAll))
+  output(concat("<br>overallStatus: ", @overallStatus))
+  output(concat("<br>requestId: ", @requestId))
+  output(concat("<br>Response: ", @Response))
+  output(concat("<br>Status: ", @Status))
+  output(concat("<br>Error: ", @Error))
+endif
+]%%

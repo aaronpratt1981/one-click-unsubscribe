@@ -8,6 +8,7 @@ var @email
 var @skey
 var @reason
 var @unsubscribeAll
+var @qs
 
 set @debug = 1
 set @jid = AttributeValue("jobid")
@@ -17,7 +18,7 @@ set @email = AttributeValue("emailaddr")
 set @skey = AttributeValue("_subscriberkey")
 set @reason = "One-Click Unsubscribe"
 set @unsubscribeAll = RequestParameter("ua")
-
+set @qs = RequestParameter("qs")
 /* if we know the subscriber */
 if not empty(@skey) then
 
@@ -114,3 +115,5 @@ endif
 
 ]%%
 <!-- output your "You've been unsubscribed" HTML content here -->
+
+<a href="http://cloud.e.chenmed.com/one-click-resubscribe?qs=%%=v(@qs)=%%">Resubscribe</a>
